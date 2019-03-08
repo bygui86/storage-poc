@@ -1,7 +1,7 @@
 package com.swissblock.storagepoc.mongodb.configs;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.config.EnableMongoAuditing;
+// import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 
 @Configuration

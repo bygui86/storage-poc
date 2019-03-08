@@ -1,4 +1,4 @@
-package com.swissblock.storagepoc.mongodb.events.listeners;
+package com.swissblock.storagepoc.mongodb.listeners;
 
 import lombok.AccessLevel;
 import lombok.Getter;
