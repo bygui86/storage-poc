@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "0c8f6c90-9a6d-4f63-85a6-1ec6015a18c5",
+		"name": "STORAGE-POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mongodb",
+			"item": [
+				{
+					"name": "Get all orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/orders/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"orders",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"orderId\": \"0001\",\n\t\"assetPair\": \"assetPair\",\n\t\"source\": \"source\",\n\t\"date\": \"date\",\n\t\"retrievedAt\": \"retrievedAt\",\n\t\"buy\": {\n\t\t\"price\": 5.25,\n\t\t\"quantity\": 50\n\t},\n\t\"sell\": {\n\t\t\"price\": 7.27,\n\t\t\"quantity\": 70\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/orders/write",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"orders",
+								"write"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
