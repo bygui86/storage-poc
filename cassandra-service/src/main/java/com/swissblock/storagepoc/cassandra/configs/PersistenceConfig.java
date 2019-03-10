@@ -14,16 +14,15 @@ import java.util.List;
 
 
 @Configuration
-// @EnableCassandraRepositories
 @EnableCassandraRepositories(basePackages = "com.swissblock.storagepoc.cassandra.repos")
 public class PersistenceConfig extends AbstractCassandraConfiguration {
 
-	String keyspaceName = "orders";
+	private static final String ORDERS_KEYSPACE = "ordersKeyspace";
 
 	@Override
 	protected String getKeyspaceName() {
 
-		return keyspaceName;
+		return ORDERS_KEYSPACE;
 	}
 
 	@Override
@@ -31,6 +30,12 @@ public class PersistenceConfig extends AbstractCassandraConfiguration {
 
 		// return SchemaAction.CREATE_IF_NOT_EXISTS;
 		return SchemaAction.RECREATE;
+	}
+
+	@Override
+	public String[] getEntityBasePackages() {
+
+		return new String[]{ "com.swissblock.storagepoc.cassandra.domain" };
 	}
 
 	// WARNING: quick patch to avoid NoClassDefFoundError exception of class com.codahale.metrics.JmxReporter
@@ -49,7 +54,7 @@ public class PersistenceConfig extends AbstractCassandraConfiguration {
 
 		List<CreateKeyspaceSpecification> createKeyspaceSpecificationList = new ArrayList<>();
 		createKeyspaceSpecificationList.add(
-				CreateKeyspaceSpecification.createKeyspace(keyspaceName)
+				CreateKeyspaceSpecification.createKeyspace(ORDERS_KEYSPACE)
 		);
 		return createKeyspaceSpecificationList;
 	}
@@ -60,7 +65,7 @@ public class PersistenceConfig extends AbstractCassandraConfiguration {
 
 		List<DropKeyspaceSpecification> dropKeyspaceSpecificationList = new ArrayList<>();
 		dropKeyspaceSpecificationList.add(
-				DropKeyspaceSpecification.dropKeyspace(keyspaceName)
+				DropKeyspaceSpecification.dropKeyspace(ORDERS_KEYSPACE)
 		);
 		return dropKeyspaceSpecificationList;
 	}

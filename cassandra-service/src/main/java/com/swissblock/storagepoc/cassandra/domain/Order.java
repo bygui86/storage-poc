@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -35,33 +36,28 @@ import javax.validation.constraints.NotNull;
 @Table("orders")
 public class Order {
 
+	// @Id
+	// @PrimaryKey
 	// At least one PrimaryKeyColumn must be of type PARTITIONED
-	// @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED)
-	@Id
+	@PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED)
 	@NotEmpty
 	String orderId;
 
-	// @Column
 	@NotEmpty
 	String assetPair;
 
-	// @Column
 	@NotEmpty
 	String source;
 
-	// @Column
 	@NotNull
 	OrderType buy;
 
-	// @Column
-	@NotNull
-	OrderType sell;
+	// @NotNull
+	// OrderType sell;
 
-	// @Column
 	@NotEmpty
 	String date;
 
-	// @Column
 	@NotEmpty
 	String retrievedAt;
 
