@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.swissblock.storagepoc</groupId>
+	<artifactId>couchbase-service</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+
+	<name>couchbase-service</name>
+	<description>Swissblock Storage PoC - Couchbase Service</description>
+	<url>https://github.com/bygui86/swissblock-storage-poc</url>
+
+	<scm>
+		<url>https://github.com/bygui86/swissblock-storage-poc</url>
+		<connection>scm:git:git://github.com/bygui86/swissblock-storage-poc.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/bygui86/swissblock-storage-poc.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<properties>
+		<!-- general -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- java -->
+		<java-source.version>11</java-source.version>
+		<java-target.version>11</java-target.version>
+
+		<!-- maven -->
+		<maven-help-plugin.version>3.1.1</maven-help-plugin.version>
+		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+		<maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
+
+		<!-- spring -->
+		<spring-boot.version>2.1.3.RELEASE</spring-boot.version>
+		<!-- <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version> -->
+
+		<!-- swagger -->
+		<swagger.version>2.9.2</swagger.version>
+
+		<!-- metrics -->
+		<!--<project13-git-plugin.version>2.2.4</project13-git-plugin.version>-->
+		<!--<micrometer-prometheus.version>1.0.4</micrometer-prometheus.version>-->
+
+		<!-- tracing -->
+		<!--<opentracing-spring-cloud-jaeger.version>0.2.0</opentracing-spring-cloud-jaeger.version>-->
+		<!--<opentracing-kafka.version>0.0.12</opentracing-kafka.version>-->
+
+		<!-- others -->
+		<lombok.version>1.18.2</lombok.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-undertow</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-couchbase</artifactId>
+		</dependency>
+
+		<!-- swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+
+		<!-- metrics -->
+		<!--<dependency>-->
+		<!--<groupId>pl.project13.maven</groupId>-->
+		<!--<artifactId>git-commit-id-plugin</artifactId>-->
+		<!--<version>${project13-git-plugin.version}</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+		<!--<groupId>io.micrometer</groupId>-->
+		<!--<artifactId>micrometer-registry-prometheus</artifactId>-->
+		<!--<version>${micrometer-prometheus.version}</version>-->
+		<!--</dependency>-->
+
+		<!-- tracing -->
+		<!-- TODO -->
+
+		<!-- others -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- spring -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<!--spring-cloud-->
+			<!-- <dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency> -->
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<!-- general -->
+		<finalName>${project.artifactId}</finalName>
+
+		<!-- plugins -->
+		<plugins>
+			<!-- maven-help -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-help-plugin</artifactId>
+				<version>${maven-help-plugin.version}</version>
+				<!-- display active profile in compile phase -->
+				<executions>
+					<execution>
+						<id>show-profiles</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>active-profiles</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- maven-compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<fork>true</fork>
+					<source>${java-source.version}</source>
+					<target>${java-target.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+			<!-- spring-boot -->
+			<!-- see https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/maven-plugin/run-mojo.html#jvmArguments -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build-info</goal>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<!-- Additional info added to Actuator info -->
+							<additionalProperties>
+								<java.source>${java-source.version}</java.source>
+								<java.target>${java-target.version}</java.target>
+								<build.encoding>${project.build.sourceEncoding}</build.encoding>
+								<reporting.encoding>${project.reporting.outputEncoding}</reporting.encoding>
+							</additionalProperties>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
