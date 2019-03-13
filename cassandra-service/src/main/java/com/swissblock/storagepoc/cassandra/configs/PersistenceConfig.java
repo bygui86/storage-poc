@@ -1,5 +1,10 @@
 package com.swissblock.storagepoc.cassandra.configs;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
@@ -10,32 +15,52 @@ import org.springframework.data.cassandra.core.cql.keyspace.DropKeyspaceSpecific
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
+@Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Getter(AccessLevel.PROTECTED)
 @Configuration
+// WARNING: we need to specify a basePackage because config class and repos are not in the same package
 @EnableCassandraRepositories(basePackages = "com.swissblock.storagepoc.cassandra.repos")
 public class PersistenceConfig extends AbstractCassandraConfiguration {
 
-	private static final String ORDERS_KEYSPACE = "ordersKeyspace";
+	@Value("${spring.data.cassandra.keyspace-name}")
+	String cassandraKeyspaceName;
+
+	@Value("${spring.data.cassandra.schema-action}:create_if_not_exists")
+	SchemaAction cassandraSchemaAction;
+
+	@Value("${cassandra.entity.base.packages:com.swissblock.storagepoc.cassandra.domain}")
+	String[] cassandraEntityBasePackages;
+
+	@Value("${spring.data.cassandra.jmx-enabled:false}")
+	boolean cassandraJmxEnabled;
 
 	@Override
 	protected String getKeyspaceName() {
 
-		return ORDERS_KEYSPACE;
+		log.debug("Cassandra keyspace name: {}", getCassandraKeyspaceName());
+
+		return getCassandraKeyspaceName();
 	}
 
 	@Override
 	public SchemaAction getSchemaAction() {
 
-		// return SchemaAction.CREATE_IF_NOT_EXISTS;
-		return SchemaAction.RECREATE;
+		log.debug("Cassandra schema action: {}", getCassandraSchemaAction());
+
+		return getCassandraSchemaAction();
 	}
 
 	@Override
 	public String[] getEntityBasePackages() {
 
-		return new String[]{ "com.swissblock.storagepoc.cassandra.domain" };
+		log.debug("Cassandra entity base packages: {}", Arrays.toString(getCassandraEntityBasePackages()));
+
+		return getCassandraEntityBasePackages();
 	}
 
 	// WARNING: quick patch to avoid NoClassDefFoundError exception of class com.codahale.metrics.JmxReporter
@@ -43,8 +68,10 @@ public class PersistenceConfig extends AbstractCassandraConfiguration {
 	@Bean
 	public CassandraClusterFactoryBean cluster() {
 
+		log.debug("Cassandra JMX enabled: {}", isCassandraJmxEnabled());
+
 		final CassandraClusterFactoryBean cluster = super.cluster();
-		cluster.setJmxReportingEnabled(false);
+		cluster.setJmxReportingEnabled(isCassandraJmxEnabled());
 		return cluster;
 	}
 
@@ -52,9 +79,11 @@ public class PersistenceConfig extends AbstractCassandraConfiguration {
 	@Override
 	protected List<CreateKeyspaceSpecification> getKeyspaceCreations() {
 
+		log.debug("Cassandra keyspace to create: {}", getCassandraKeyspaceName());
+
 		List<CreateKeyspaceSpecification> createKeyspaceSpecificationList = new ArrayList<>();
 		createKeyspaceSpecificationList.add(
-				CreateKeyspaceSpecification.createKeyspace(ORDERS_KEYSPACE)
+				CreateKeyspaceSpecification.createKeyspace(getCassandraKeyspaceName())
 		);
 		return createKeyspaceSpecificationList;
 	}
@@ -63,9 +92,11 @@ public class PersistenceConfig extends AbstractCassandraConfiguration {
 	@Override
 	protected List<DropKeyspaceSpecification> getKeyspaceDrops() {
 
+		log.debug("Cassandra keyspace to drop: {}", getCassandraKeyspaceName());
+
 		List<DropKeyspaceSpecification> dropKeyspaceSpecificationList = new ArrayList<>();
 		dropKeyspaceSpecificationList.add(
-				DropKeyspaceSpecification.dropKeyspace(ORDERS_KEYSPACE)
+				DropKeyspaceSpecification.dropKeyspace(getCassandraKeyspaceName())
 		);
 		return dropKeyspaceSpecificationList;
 	}

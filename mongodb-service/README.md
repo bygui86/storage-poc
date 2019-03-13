@@ -1,5 +1,5 @@
 
-# SwissBlock - Storage PoCs - MongoDB replica set
+# SwissBlock - Storage PoCs - MongoDB
 
 ## Run
 
