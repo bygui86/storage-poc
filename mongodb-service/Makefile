@@ -6,8 +6,8 @@ BUILD_TOOL := ./mvnw
 NAME := mongodb-service
 JAR_FILE := $(shell find target -name '*.jar' 2>/dev/null)
 PROTOCOL := http
-PORT := 8081
-METRICS_PORT := 8091
+PORT := 9081
+METRICS_PORT := 9091
 HEAP_SIZE := 256m
 META_SIZE := 300m
 

@@ -3,11 +3,9 @@
 
 ## Run
 
-### Locally
 ```
 cd <PROJECT_ROOT_FOLDER>/cassandra-service
-docker run -d --rm --name cassandra -p 7199:7199 -p 7000:7000 -p 7001:7001 -p 9160:9160 -p 9042:9042 cassandra
-docker run -ti --rm --name cassandra -p 7199:7199 -p 7000:7000 -p 7001:7001 -p 9160:9160 -p 9042:9042 cassandra
+docker run -d --name cassandra -p 7199:7199 -p 7000:7000 -p 7001:7001 -p 9160:9160 -p 9042:9042 cassandra
 make clean run
 ```
 

@@ -6,8 +6,8 @@ BUILD_TOOL := ./mvnw
 NAME := cassandra-service
 JAR_FILE := $(shell find target -name '*.jar' 2>/dev/null)
 PROTOCOL := http
-PORT := 8082
-METRICS_PORT := 8092
+PORT := 9082
+METRICS_PORT := 9092
 HEAP_SIZE := 256m
 META_SIZE := 300m
 

@@ -3,7 +3,6 @@
 
 ## Run
 
-### Locally
 ```
 cd <PROJECT_ROOT_FOLDER>/mongodb-service
 docker run -d --rm --name mongo -p 27017:27017 mongo
