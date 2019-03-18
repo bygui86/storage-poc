@@ -1,5 +1,5 @@
 
-# SwissBlock - Storage PoCs - Cassandra
+# Storage PoCs - Cassandra
 
 ## Run
 

@@ -1,5 +1,5 @@
 
-# SwissBlock - Storage PoCs - Couchbase
+# Storage PoCs - Couchbase
 
 ## Run
 
