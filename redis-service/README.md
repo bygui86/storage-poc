@@ -19,3 +19,4 @@
 ## Links
 
 * https://www.baeldung.com/spring-data-redis-tutorial
+* https://github.com/spring-projects/spring-data-examples/tree/master/redis/repositories
