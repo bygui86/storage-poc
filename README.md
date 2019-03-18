@@ -3,23 +3,22 @@
 
 ## Subprojects
 
-* [MongoDB](mongodb-service/) - `READY`
-* [Cassandra](cassandra-service/) - `READY`
-* [Couchbase](couchbase-service/) - `IN-PROGRESS`
-* Solr - `TODO`
-* Redis - `TODO`
-* ScyllaDB (?) - `TODO`
+* [MongoDB](mongodb-service/)
+* [Cassandra](cassandra-service/)
+* [Couchbase](couchbase-service/)
+* [Solr](solr-service/)
+* [Redis](redis-service/)
 
 ---
 
 ## TODOs
 
-* imperative services - `IN-PROGRESS`
+* services
+	* reactive
 * enable auditing
 * spring boot admin console
 * monitoring metrics
 * tracing
-* reactive services
 
 ---
 
@@ -33,7 +32,6 @@
 * Couchbase
 * Solr
 * Redis
-* ScyllaDB (?)
 * Jib
 * Kaniko
 * Kubernetes

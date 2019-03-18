@@ -72,6 +72,30 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9081/orders/write",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"orders",
+								"write"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -127,6 +151,30 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"orderId\": \"0001\",\n\t\"assetPair\": \"assetPair\",\n\t\"source\": \"source\",\n\t\"date\": \"date\",\n\t\"retrievedAt\": \"retrievedAt\",\n\t\"orderBuyPrice\": 5.25,\n\t\"orderBuyQuantity\": 50,\n\t\"orderSellPrice\": 7.27,\n\t\"orderSellQuantity\": 70\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9082/orders/write",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9082",
+							"path": [
+								"orders",
+								"write"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://localhost:9082/orders/write",
@@ -234,6 +282,30 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9083/orders/write",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9083",
+							"path": [
+								"orders",
+								"write"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"event": [
@@ -251,6 +323,238 @@
 					"listen": "test",
 					"script": {
 						"id": "09566588-5fda-4a7a-b9da-580b799cab1c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "solr",
+			"item": [
+				{
+					"name": "Get all orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9084/orders/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9084",
+							"path": [
+								"orders",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"orderId\": \"0001\",\n\t\"assetPair\": \"assetPair\",\n\t\"source\": \"source\",\n\t\"date\": \"date\",\n\t\"retrievedAt\": \"retrievedAt\",\n\t\"buy\": {\n\t\t\"price\": 5.25,\n\t\t\"quantity\": 50\n\t},\n\t\"sell_price\": 7.27,\n\t\"sell_quantity\": 70\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9084/orders/write",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9084",
+							"path": [
+								"orders",
+								"write"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9084/orders/write",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9084",
+							"path": [
+								"orders",
+								"write"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bd5bcc08-018e-491f-9189-72a5801d6efa",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "09566588-5fda-4a7a-b9da-580b799cab1c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "redis",
+			"item": [
+				{
+					"name": "Get all orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9085/orders/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9085",
+							"path": [
+								"orders",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"orderId\": \"0001\",\n\t\"assetPair\": \"assetPair\",\n\t\"source\": \"source\",\n\t\"date\": \"date\",\n\t\"retrievedAt\": \"retrievedAt\",\n\t\"buy\": {\n\t\t\"price\": 5.25,\n\t\t\"quantity\": 50\n\t},\n\t\"sell\": {\n\t\t\"price\": 7.27,\n\t\t\"quantity\": 70\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9085/orders/write",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9085",
+							"path": [
+								"orders",
+								"write"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9085/orders/write",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9085",
+							"path": [
+								"orders",
+								"write"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "228393d5-6239-42a7-a833-994e4bab2d80",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "edfa0f3a-0428-47e4-9095-025d96075789",
 						"type": "text/javascript",
 						"exec": [
 							""
