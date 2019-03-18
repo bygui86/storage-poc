@@ -1,5 +1,5 @@
 
-# SwissBlock - Storage PoCs - Solr
+# Storage PoCs - Solr
 
 ## Run
 
@@ -24,6 +24,11 @@
 * https://github.com/dtrunk90/gs-nested-solr-documents
 * https://docs.spring.io/spring-data/solr/docs/current/reference/html/
 
+### nexted objects
+
+* http://lifelongprogrammer.blogspot.com/2017/03/making-child-documents-working-with-spring-data-solr.html?m=1
+* http://lifelongprogrammer.blogspot.com/2015/09/mix-spring-data-solr-and-solrj-in-solr.html
+
 ### collaterals
 
 * https://medium.com/@pablocastelnovo/nesting-documents-in-apache-solr-12ef44ea2901
@@ -34,8 +39,8 @@
 * https://stackoverflow.com/questions/39785462/nested-documents-with-spring-data-solr
 * https://jira.spring.io/browse/DATASOLR-444
 
-### TO READ
-https://github.com/dtrunk90/gs-nested-solr-documents
-http://lifelongprogrammer.blogspot.com/2017/03/making-child-documents-working-with-spring-data-solr.html?m=1
-http://lucene.apache.org/solr/guide/6_6/transforming-and-indexing-custom-json.html
-https://stackoverflow.com/questions/36848536/spring-data-solr-advanced-nested-model-use-case
+### not helpful
+
+* https://github.com/dtrunk90/gs-nested-solr-documents
+* http://lucene.apache.org/solr/guide/6_6/transforming-and-indexing-custom-json.html
+* https://stackoverflow.com/questions/36848536/spring-data-solr-advanced-nested-model-use-case

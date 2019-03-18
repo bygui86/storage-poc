@@ -1,4 +1,4 @@
-package com.swissblock.storagepoc.solr.domain;
+package com.rabbit.samples.storagepoc.solr.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -11,13 +11,10 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.solr.core.mapping.ChildDocument;
-import org.springframework.data.solr.core.mapping.Indexed;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 
 /**
@@ -40,51 +37,42 @@ public class Order {
 	String id;
 
 	@Field("orderId_s")
-	@Indexed(name = "orderId_s")
-	// @Indexed(name = "orderId_s", type = "string", required = true)
+	// @Indexed(name = "orderId", type = "string", required = true)
 	@NotEmpty
 	String orderId;
 
 	@Field("assetPair_s")
-	// @Indexed(name = "assetPair_s")
-	// @Indexed(name = "assetPair_s", type = "string", required = true)
+	// @Indexed(name = "assetPair", type = "string", required = true)
 	@NotEmpty
 	String assetPair;
 
 	@Field("source_s")
-	// @Indexed(name = "source_s")
-	// @Indexed(name = "source_s", type = "string", required = true)
+	// @Indexed(name = "source", type = "string", required = true)
 	@NotEmpty
 	String source;
 
+	// @ChildDocument
 	// @Field(child = true)
-	// @ChildDocument
-	// @NotNull
-	// OrderType buy;
-
-	// @ChildDocument
-	// @Indexed(name = "buys")
-	// @NotNull
-	// List<OrderType> buys;
-
 	@Field("buy_s")
-	// @Indexed(name = "buy_s")
-	// @ChildDocument
-	// @NotNull
+	// @Indexed(name = "buy", type = "string", required = true)
+	@NotNull
 	OrderType buy;
 
-	// @NotNull
-	// OrderType sell;
+	@Field("price_f")
+	// @Indexed(name = "price", type = "pfloat", required = true)
+	float sell_price;
+
+	@Field("quantity_f")
+	// @Indexed(name = "quantity", type = "pfloat", required = true)
+	float sell_quantity;
 
 	@Field("date_s")
-	// @Indexed(name = "date_s")
-	// @Indexed(name = "date_s", type = "string", required = true)
+	// @Indexed(name = "date", type = "string", required = true)
 	@NotEmpty
 	String date;
 
 	@Field("retrievedAt_s")
-	// @Indexed(name = "retrievedAt_s")
-	// @Indexed(name = "retrievedAt_s", type = "string", required = true)
+	// @Indexed(name = "retrievedAt", type = "string", required = true)
 	@NotEmpty
 	String retrievedAt;
 

@@ -3,19 +3,18 @@
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.swissblock.storagepoc</groupId>
+	<groupId>com.rabbit.samples.storagepoc</groupId>
 	<artifactId>solr-service</artifactId>
 	<version>0.0.1</version>
-	<packaging>jar</packaging>
 
 	<name>solr-service</name>
-	<description>Swissblock Storage PoC - Solr Service</description>
-	<url>https://github.com/bygui86/swissblock-storage-poc</url>
+	<description>Storage PoC - Solr Service</description>
+	<url>https://github.com/bygui86/storage-poc</url>
 
 	<scm>
-		<url>https://github.com/bygui86/swissblock-storage-poc</url>
-		<connection>scm:git:git://github.com/bygui86/swissblock-storage-poc.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/bygui86/swissblock-storage-poc.git</developerConnection>
+		<url>https://github.com/bygui86/storage-poc</url>
+		<connection>scm:git:git://github.com/bygui86/storage-poc.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/bygui86/storage-poc.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -49,7 +48,7 @@
 		<!--<opentracing-kafka.version>0.0.12</opentracing-kafka.version>-->
 
 		<!-- others -->
-		<lombok.version>1.18.2</lombok.version>
+		<lombok.version>1.18.4</lombok.version>
 	</properties>
 
 	<dependencies>
@@ -74,36 +73,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-solr</artifactId>
-			<!--<exclusions>-->
-				<!--<exclusion>-->
-					<!--<artifactId>org.apache.solr</artifactId>-->
-					<!--<groupId>solr-solrj</groupId>-->
-				<!--</exclusion>-->
-				<!--<exclusion>-->
-					<!--<artifactId>org.apache.solr</artifactId>-->
-					<!--<groupId>solr-core</groupId>-->
-				<!--</exclusion>-->
-				<!--<exclusion>-->
-					<!--<artifactId>org.apache.solr</artifactId>-->
-					<!--<groupId>solr-langid</groupId>-->
-				<!--</exclusion>-->
-			<!--</exclusions>-->
 		</dependency>
-		<!--<dependency>-->
-			<!--<artifactId>org.apache.solr</artifactId>-->
-			<!--<groupId>solr-solrj</groupId>-->
-			<!--<version>8.0.0</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.apache.solr</groupId>-->
-			<!--<artifactId>solr-core</artifactId>-->
-			<!--<version>8.0.0</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<artifactId>org.apache.solr</artifactId>-->
-			<!--<groupId>solr-langid</groupId>-->
-			<!--<version>8.0.0</version>-->
-		<!--</dependency>-->
 
 		<!-- swagger -->
 		<dependency>

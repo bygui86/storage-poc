@@ -1,4 +1,4 @@
-package com.swissblock.storagepoc.solr;
+package com.rabbit.samples.storagepoc.solr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

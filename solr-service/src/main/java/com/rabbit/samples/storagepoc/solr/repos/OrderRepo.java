@@ -1,6 +1,6 @@
-package com.swissblock.storagepoc.solr.repos;
+package com.rabbit.samples.storagepoc.solr.repos;
 
-import com.swissblock.storagepoc.solr.domain.Order;
+import com.rabbit.samples.storagepoc.solr.domain.Order;
 import org.springframework.data.solr.repository.SolrCrudRepository;
 import org.springframework.stereotype.Repository;
 
